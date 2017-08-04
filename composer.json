@@ -1,0 +1,37 @@
+{
+    "name": "edipresse/laravel-translatable",
+    "description": "A Laravel package for multilingual models",
+    "keywords": ["laravel", "translation", "language", "database"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Kostenko",
+            "email": "aleksey.kostenko.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.4.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.4.*",
+        "phpunit/phpunit": "~5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Edipresse\\Translatable\\": "src/Translatable/"
+        },
+        "classmap": [
+            "tests"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Edipresse\\Translatable\\TranslatableServiceProvider"
+            ]
+        }
+    },
+
+    "minimum-stability": "dev"
+}
