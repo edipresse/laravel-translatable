@@ -597,14 +597,15 @@ trait Translatable
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string                                $key
      * @param string                                $value
+     * @param string                                $operator
      * @param string                                $locale
      *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
-    public function scopeWhereTranslation(Builder $query, $key, $value, $locale = null)
+    public function scopeWhereTranslation(Builder $query, $key, $operator, $value, $locale = null)
     {
-        return $query->whereHas('translations', function (Builder $query) use ($key, $value, $locale) {
-            $query->where($this->getTranslationsTable().'.'.$key, $value);
+        return $query->whereHas('translations', function (Builder $query) use ($key, $value, $operator, $locale) {
+            $query->where($this->getTranslationsTable().'.'.$key, $operator, $value);
             if ($locale) {
                 $query->where($this->getTranslationsTable().'.'.$this->getLocaleKey(), $locale);
             }
@@ -617,14 +618,15 @@ trait Translatable
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string                                $key
      * @param string                                $value
+     * @param string                                $operator
      * @param string                                $locale
      *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
-    public function scopeOrWhereTranslation(Builder $query, $key, $value, $locale = null)
+    public function scopeOrWhereTranslation(Builder $query, $key, $operator, $value, $locale = null)
     {
-        return $query->orWhereHas('translations', function (Builder $query) use ($key, $value, $locale) {
-            $query->where($this->getTranslationsTable().'.'.$key, $value);
+        return $query->orWhereHas('translations', function (Builder $query) use ($key, $operator, $value, $locale) {
+            $query->where($this->getTranslationsTable().'.'.$key, $operator, $value);
             if ($locale) {
                 $query->where($this->getTranslationsTable().'.'.$this->getLocaleKey(), $locale);
             }
